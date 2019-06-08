@@ -3,7 +3,9 @@
 @import 'bootstrap/scss/bootstrap';
 @import '~compass-mixins/lib/compass/css3';
 
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import "~@nebular/theme/styles/prebuilt/default.css";
+
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 
 // html, body {
