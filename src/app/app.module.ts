@@ -9,7 +9,6 @@ import { MaterialModulesModule } from './core/material-modules/material-modules.
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component'
-import { HelloComponent } from './hello.component';
 import { HomeComponent } from './home/home.component';
 import { NbSidebarModule, NbLayoutModule, NbButtonModule, NbThemeModule } from '@nebular/theme';
 
