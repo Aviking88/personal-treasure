@@ -7,6 +7,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { MaterialModulesModule } from './core/material-modules/material-modules.module'
 
+import { CoreFeaturesModule } from './core-features/core-features.module';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component'
 import { HomeComponent } from './home/home.component';
@@ -19,7 +21,7 @@ const AppRoutes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'login',
+    path: 'hom',
     pathMatch: 'full',
     component: LoginComponent
 
@@ -34,6 +36,8 @@ const AppRoutes: Routes = [
   imports: [BrowserModule, BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes), NbThemeModule.forRoot(),NbLayoutModule,
     NbSidebarModule.forRoot(), // NbSidebarModule.forRoot(), //if this is your app.module
+    CoreFeaturesModule,
+
     NbButtonModule, FormsModule, MaterialModulesModule],
   declarations: [AppComponent, LoginComponent, HomeComponent],
   bootstrap: [AppComponent]
