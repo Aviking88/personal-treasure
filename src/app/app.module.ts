@@ -11,7 +11,6 @@ import { CoreFeaturesModule } from './core-features/core-features.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component'
-import { HomeComponent } from './home/home.component';
 import { NbSidebarModule, NbLayoutModule, NbButtonModule, NbThemeModule } from '@nebular/theme';
 
 const AppRoutes: Routes = [
@@ -21,11 +20,12 @@ const AppRoutes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'dashboard',
+    path: 'login',
     pathMatch: 'full',
-    component: HomeComponent
+    component: LoginComponent
 
   }];
+  
 @NgModule({
   imports: [BrowserModule, BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes), NbThemeModule.forRoot(),NbLayoutModule,
@@ -33,7 +33,7 @@ const AppRoutes: Routes = [
     CoreFeaturesModule,
 
     NbButtonModule, FormsModule, MaterialModulesModule],
-  declarations: [AppComponent, LoginComponent, HomeComponent],
+  declarations: [AppComponent, LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
