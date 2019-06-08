@@ -21,13 +21,7 @@ const AppRoutes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'hom',
-    pathMatch: 'full',
-    component: LoginComponent
-
-  },
-  {
-    path: 'home',
+    path: 'dashboard',
     pathMatch: 'full',
     component: HomeComponent
 
