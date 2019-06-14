@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'my-app',
-  templateUrl: './app.component.html',
+  template: '<router-outlet></router-outlet>',
   styleUrls: [ './app.component.scss' ]
 })
 export class AppComponent implements OnInit  {
@@ -11,9 +11,6 @@ export class AppComponent implements OnInit  {
   constructor(private firebaseService: FirebaseService) {}
 
   ngOnInit(){
-    this.firebaseService.getUsers().subscribe(d=>{
-      console.log(d);
-    })
-
+    this.firebaseService.getUsers();
   }
 }

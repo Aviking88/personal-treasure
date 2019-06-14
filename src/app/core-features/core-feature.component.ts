@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 @Component({
   selector:'core-features',
-  templateUrl:'./core-features.component.html',
-  styleUrls: ['./core-features.component.scss']
+  templateUrl:'./core-feature.component.html',
+  styleUrls: ['./core-feature.component.scss']
 })
 export class CoreFeatureComponent{
 

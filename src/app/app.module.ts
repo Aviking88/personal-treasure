@@ -21,7 +21,8 @@ import {
 } from '@nebular/theme';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
+import { FirebaseService } from './shared/service/firebase.service';
 const firebaseConfig = {
   apiKey: 'AIzaSyDVjmrsylljEuXs91CPs69LicryYrQWodE',
   authDomain: 'personal-treasure.firebaseapp.com',
@@ -44,10 +45,9 @@ const AppRoutes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'dashboard',
+    path: 'home',
     pathMatch: 'full',
     component: DashboardComponent,
-    canActivate: [AuthGuard]
   },
 ];
 
@@ -55,11 +55,9 @@ const AppRoutes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AngularFireModule.initializeApp(firebaseConfig),
     RouterModule.forRoot(AppRoutes),
     NbThemeModule.forRoot(),
-    NbLayoutModule,
-    NbSidebarModule.forRoot(),
-    AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
     CoreFeaturesModule,
@@ -69,6 +67,7 @@ const AppRoutes: Routes = [
     MaterialModulesModule
   ],
   declarations: [AppComponent, LoginComponent],
+  providers:[FirebaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
