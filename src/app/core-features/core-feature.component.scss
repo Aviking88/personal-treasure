@@ -1,0 +1,27 @@
+.core-feature-container{
+  .navigation-bar{
+    width: 100%;
+    background: #000;
+    user-select: none;
+    ul{
+      display: inline-flex;
+    }
+  }
+
+  .header{
+    color:#fff;
+    display: inline-flex;
+     padding: 10px;
+  }
+
+  .white-font{
+    color: #fff;
+    float: right;
+    cursor: pointer;
+    padding: 10px;
+    position: relative;
+    top: 0px;
+    left: 862px;
+  }
+
+}
