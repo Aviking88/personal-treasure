@@ -12,7 +12,7 @@
               <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
             </mat-form-field>
             <mat-form-field style="width:100%">
-              <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+              <input matInput placeholder="Password" [(ngModel)]="loginPassword" type="password" name="password" required>
             </mat-form-field>
           </div>
           <button mat-raised-button class="btn" color="primary" (click)="login()">Connect</button>
@@ -22,27 +22,27 @@
       </div>
       <div *ngIf="!isLogin" class="register-panel">
         <div class="form-container">
-          <div>
+          <div [formGroup]="registrationForm">
             <mat-form-field style="width:100%">
-              <input matInput placeholder="First Name" name="firstName" required>
+              <input matInput placeholder="First Name" formControlName="firstName" required>
             </mat-form-field>
             <mat-form-field style="width:100%">
-              <input matInput placeholder="Last Name" name="lastName" required>
+              <input matInput placeholder="Last Name" formControlName="lastName" required>
             </mat-form-field>
             <mat-form-field style="width:100%">
-              <input matInput placeholder="Email" name="email" required>
+              <input matInput placeholder="Email" formControlName="email" required>
             </mat-form-field>
             <mat-form-field style="width:100%">
-              <input matInput placeholder="Email Confirmation" name="emailConfirmation" required>
+              <input matInput placeholder="Email Confirmation" formControlName="cnfEmail" required>
             </mat-form-field>
             <mat-form-field style="width:100%">
-              <input matInput placeholder="password" name="password" required>
+              <input matInput placeholder="password" formControlName="password" required>
             </mat-form-field>
             <mat-form-field style="width:100%">
-              <input matInput placeholder="Password Confirmation" name="passwordConfirmation" required>
+              <input matInput placeholder="Password Confirmation" formControlName="cnfPassword" required>
             </mat-form-field>
           </div>
-          <button mat-raised-button color="primary" class="btn" type="submit" name="action">Submit</button>
+          <button mat-raised-button color="primary" (click)="register()" class="btn">Submit</button>
 
         </div>
       </div>

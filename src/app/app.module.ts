@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { MaterialModulesModule } from './core/material-modules/material-modules.module';
@@ -17,6 +17,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FirebaseService } from './shared/service/firebase.service';
 import { AppRoutes } from './app.routes';
+import { DataServiceService } from './shared/service/data.service';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDVjmrsylljEuXs91CPs69LicryYrQWodE',
@@ -31,6 +32,7 @@ const firebaseConfig = {
 @NgModule({
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     RouterModule.forRoot(AppRoutes),
@@ -46,7 +48,7 @@ const firebaseConfig = {
     MaterialModulesModule,
   ],
   declarations: [AppComponent, LoginComponent],
-  providers: [FirebaseService],
+  providers: [DataServiceService, FirebaseService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

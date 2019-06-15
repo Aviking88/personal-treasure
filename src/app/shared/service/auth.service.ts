@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from 'firebase';
+import { from, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -28,6 +29,10 @@ export class AuthService {
     } catch (e) {
       alert('Error!' + e.message);
     }
+  }
+
+  registerUser(email: string, password: string): Observable<any> {
+    return from(this.afAuth.auth.createUserWithEmailAndPassword(email, password))
   }
 
   async logout() {
