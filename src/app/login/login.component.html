@@ -1,27 +1,53 @@
 <mat-card class="login-container">
-   <mat-card-header>
-     <mat-card-title>Login</mat-card-title>
-   </mat-card-header>
-   <mat-card-content>
-     <form class="example-form">
-       <table class="example-full-width" cellspacing="0">
-         <tr>
-           <td>
-             <mat-form-field class="example-full-width">
-             <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
-             </mat-form-field>
-           </td>
-         </tr>
-         <tr>
-         <td><mat-form-field class="example-full-width">
-           <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
-         </mat-form-field></td>
-       </tr></table>
-     </form>
-     <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
-   </mat-card-content>
-   <mat-card-actions>
-     <button mat-raised-button (click)="login()" color="primary">Login</button>
-     <button mat-raised-button (click)="register()" color="primary">Register Here</button>
-   </mat-card-actions>
- </mat-card>
+  <mat-card-content>
+    <div class="registration-container">
+      <ul class="tabs">
+        <li class="tab-item" [ngClass]="{'tab-item-active': isLogin}" (click)="isLogin = true;">Login</li>
+        <li class="tab-item" [ngClass]="{'tab-item-active': !isLogin}" (click)="isLogin = false;">Register</li>
+      </ul>
+      <div *ngIf="isLogin" class="login-panel">
+        <div class="form-container">
+          <div>
+            <mat-form-field style="width:100%">
+              <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+            </mat-form-field>
+            <mat-form-field style="width:100%">
+              <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+            </mat-form-field>
+          </div>
+          <button mat-raised-button class="btn" color="primary" (click)="login()">Connect</button>
+
+          <a style="display: block" href="">Forgotten password?</a>
+        </div>
+      </div>
+      <div *ngIf="!isLogin" class="register-panel">
+        <div class="form-container">
+          <div>
+            <mat-form-field style="width:100%">
+              <input matInput placeholder="First Name" name="firstName" required>
+            </mat-form-field>
+            <mat-form-field style="width:100%">
+              <input matInput placeholder="Last Name" name="lastName" required>
+            </mat-form-field>
+            <mat-form-field style="width:100%">
+              <input matInput placeholder="Email" name="email" required>
+            </mat-form-field>
+            <mat-form-field style="width:100%">
+              <input matInput placeholder="Email Confirmation" name="emailConfirmation" required>
+            </mat-form-field>
+            <mat-form-field style="width:100%">
+              <input matInput placeholder="password" name="password" required>
+            </mat-form-field>
+            <mat-form-field style="width:100%">
+              <input matInput placeholder="Password Confirmation" name="passwordConfirmation" required>
+            </mat-form-field>
+          </div>
+          <button mat-raised-button color="primary" class="btn" type="submit" name="action">Submit</button>
+
+        </div>
+      </div>
+
+    </div>
+    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+  </mat-card-content>
+</mat-card>

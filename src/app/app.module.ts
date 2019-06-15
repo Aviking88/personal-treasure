@@ -1,11 +1,9 @@
-import { AuthGuard } from './shared/guard/auth.guard';
-import { DashboardComponent } from './core-features/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { MaterialModulesModule } from './core/material-modules/material-modules.module';
 
@@ -13,12 +11,11 @@ import { CoreFeaturesModule } from './core-features/core-features.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { NbButtonModule, NbThemeModule } from '@nebular/theme';
+import { NbButtonModule, NbThemeModule, NbStepperModule, NbCardModule } from '@nebular/theme';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FirebaseService } from './shared/service/firebase.service';
-import { RegisterComponent } from './register/register.component';
 import { AppRoutes } from './app.routes';
 
 const firebaseConfig = {
@@ -37,16 +34,18 @@ const firebaseConfig = {
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     RouterModule.forRoot(AppRoutes),
-    NbThemeModule.forRoot(),
+    NbThemeModule.forRoot({ name: 'default' }),
     AngularFirestoreModule,
     AngularFireAuthModule,
     CoreFeaturesModule,
 
     NbButtonModule,
+    NbCardModule,
+    NbStepperModule,
     FormsModule,
     MaterialModulesModule,
   ],
-  declarations: [AppComponent, LoginComponent, RegisterComponent],
+  declarations: [AppComponent, LoginComponent],
   providers: [FirebaseService],
   bootstrap: [AppComponent],
 })

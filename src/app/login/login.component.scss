@@ -1,6 +1,68 @@
 .login-container{
-  width: 50%;
-  min-width: 300px;
-  margin: 0 auto;
-  margin-top: 60px;
+  position: absolute;
+  box-sizing: border-box;
+  top:5vh;
+  left:50%;
+  transform: translateX(-50%);
+  width: 520px;
+  .tabs{
+    list-style: none;
+    display: flex;
+    text-align: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 48px;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    white-space: nowrap;
+    .tab-item{
+      display: block;
+      cursor: pointer;
+      flex-basis: 50%;
+      text-align: center;
+      line-height: 48px;
+      height: 48px;
+      padding: 0;
+      margin: 0;
+      text-transform: uppercase;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      letter-spacing: .8px;
+      width: 15%;
+      min-width: 80px;
+      color: #fff;
+      background-color: #673ab7;
+      &-active{
+        cursor: default;
+        opacity: 0.6;
+        transition: color .28s ease;
+      }
+    }
+  }
+  .login-panel, .register-panel{
+    padding: 20px 0px;
+    .form-container > *{
+      width: 100%;;
+    }
+    .form-container {
+      position: relative;
+      display: flex;
+      flex-flow: column;
+      .treasure-btn-container{
+        position: relative;
+        .btn-connect{
+          margin: 0 auto;
+          display: block;
+        }
+
+      }
+    }
+
+  }
+}
+
+.full-width{
+width: 100%;
 }
