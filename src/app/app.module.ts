@@ -13,16 +13,14 @@ import { CoreFeaturesModule } from './core-features/core-features.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import {
-  NbSidebarModule,
-  NbLayoutModule,
-  NbButtonModule,
-  NbThemeModule
-} from '@nebular/theme';
+import { NbButtonModule, NbThemeModule } from '@nebular/theme';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
 import { FirebaseService } from './shared/service/firebase.service';
+import { RegisterComponent } from './register/register.component';
+import { AppRoutes } from './app.routes';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyDVjmrsylljEuXs91CPs69LicryYrQWodE',
   authDomain: 'personal-treasure.firebaseapp.com',
@@ -30,27 +28,8 @@ const firebaseConfig = {
   projectId: 'personal-treasure',
   storageBucket: 'personal-treasure.appspot.com',
   messagingSenderId: '185166452380',
-  appId: '1:185166452380:web:6fa07cb5f2191ae3'
+  appId: '1:185166452380:web:6fa07cb5f2191ae3',
 };
-
-const AppRoutes: Routes = [
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    pathMatch: 'full',
-    component: LoginComponent
-  },
-  {
-    path: 'home',
-    pathMatch: 'full',
-    loadChildren: () => import('./core-features/core-features.module').then(mod => mod.CoreFeaturesModule),
-    canLoad: [AuthGuard]
-  },
-];
 
 @NgModule({
   imports: [
@@ -65,10 +44,10 @@ const AppRoutes: Routes = [
 
     NbButtonModule,
     FormsModule,
-    MaterialModulesModule
+    MaterialModulesModule,
   ],
-  declarations: [AppComponent, LoginComponent],
-  providers:[FirebaseService],
-  bootstrap: [AppComponent]
+  declarations: [AppComponent, LoginComponent, RegisterComponent],
+  providers: [FirebaseService],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
