@@ -47,7 +47,8 @@ const AppRoutes: Routes = [
   {
     path: 'home',
     pathMatch: 'full',
-    component: DashboardComponent,
+    loadChildren: () => import('./core-features/core-features.module').then(mod => mod.CoreFeaturesModule),
+    canLoad: [AuthGuard]
   },
 ];
 

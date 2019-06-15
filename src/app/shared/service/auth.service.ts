@@ -5,13 +5,20 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from 'firebase';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   user: User;
-  authState= null;
+  authState = null;
   constructor(public afAuth: AngularFireAuth, public router: Router) {
- 
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        this.user = user;
+        localStorage.setItem('treasure-user', JSON.stringify(this.user));
+      } else {
+        localStorage.setItem('treasure-user', null);
+      }
+    });
   }
 
   async login(email: string, password: string) {
@@ -25,20 +32,20 @@ export class AuthService {
 
   async logout() {
     await this.afAuth.auth.signOut();
-    localStorage.removeItem('user');
+    localStorage.removeItem('treasure-user');
     this.router.navigate(['login']);
   }
 
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('treasure-user'));
     return user !== null;
   }
 
   // Returns true if user is logged in
-get authenticated(): boolean {
-  return this.authState !== null;
-}
-get currentUserObservable(): any {
-  return this.afAuth.auth;
-}
+  get authenticated(): boolean {
+    return this.authState !== null;
+  }
+  get currentUserObservable(): any {
+    return this.afAuth.auth;
+  }
 }

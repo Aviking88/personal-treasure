@@ -7,11 +7,13 @@ import { TreasureComponent } from './treasure/treasure.component';
 import { SettingsComponent } from './settings/settings.component';
 import { CoreFeatureComponent } from './core-feature.component';
 import { NbLayoutModule, NbSidebarModule } from '@nebular/theme';
+import { AuthGuard } from 'app/shared/guard/auth.guard';
 
 const featuresRoutes: Routes = [
   {
     path: 'home',
     component: CoreFeatureComponent,
+    canActivateChild: [AuthGuard],
     children: [
       {
         path: 'treasure',
@@ -45,6 +47,7 @@ const featuresRoutes: Routes = [
     RouterModule.forChild(featuresRoutes)
   ],
   exports:[ CoreFeatureComponent],
+  providers:[AuthGuard],
   declarations: [CoreFeatureComponent,DashboardComponent, TreasureComponent, SettingsComponent]
 })
 export class CoreFeaturesModule { }
