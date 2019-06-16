@@ -23,9 +23,9 @@ const ELEMENT_DATA: ITreasureData[] = [ { iconUrl: null, name: 'Facebook', passw
   styleUrls: ['./treasure.component.scss']
 })
 export class TreasureComponent implements OnInit {
-  data: ITreasureData[] = [ { iconUrl: null, name: null, password: null, lastUpdated: null, viewMode: true } ];
+  data: ITreasureData[] = ELEMENT_DATA;
   displayedColumns: string[] = ['iconUrl', 'name', 'password', 'lastUpdated'];
-  dataSource = new MatTableDataSource<ITreasureData>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<ITreasureData>(this.data);
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -35,6 +35,12 @@ export class TreasureComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  addTreasure(){
+    const data = { iconUrl: null, name: null, password: null, lastUpdated: null, viewMode: false };
+    this.data.push(data);
+    this.dataSource = new MatTableDataSource<ITreasureData>(this.data);
   }
 
 
