@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Add/Edit Treasure</h1>
+<div mat-dialog-content>
+  <mat-form-field style="width:100%">
+      <input matInput placeholder="Name"  required>
+    </mat-form-field>
+    <mat-form-field style="width:100%">
+      <input matInput type="password" placeholder="password" required>
+    </mat-form-field>
+    <mat-form-field style="width:100%">
+      <input matInput type="password" placeholder="Password Confirmation"  required>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Add</button>
+</div>

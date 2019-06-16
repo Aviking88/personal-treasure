@@ -11,12 +11,12 @@ import { CoreFeaturesModule } from './core-features/core-features.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { NbButtonModule, NbThemeModule, NbStepperModule, NbCardModule } from '@nebular/theme';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FirebaseService } from './shared/service/firebase.service';
 import { AppRoutes } from './app.routes';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { DataServiceService } from './shared/service/data.service';
 
 const firebaseConfig = {
@@ -36,19 +36,15 @@ const firebaseConfig = {
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(firebaseConfig),
     RouterModule.forRoot(AppRoutes),
-    NbThemeModule.forRoot({ name: 'default' }),
     AngularFirestoreModule,
     AngularFireAuthModule,
     CoreFeaturesModule,
 
-    NbButtonModule,
-    NbCardModule,
-    NbStepperModule,
     FormsModule,
     MaterialModulesModule,
   ],
   declarations: [AppComponent, LoginComponent],
-  providers: [DataServiceService, FirebaseService],
+  providers: [ {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}, DataServiceService, FirebaseService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
