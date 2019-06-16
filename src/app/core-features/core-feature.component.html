@@ -1,13 +1,23 @@
-<nb-layout>
-	<nb-layout-header fixed>
-		<ol>
-			<a routerLink="/home/dashboard">Dashboard</a>
-			<a routerLink="/home/treasure">Treasure</a>
-			<a routerLink="/home/settings">Settings</a>
-        </ol>
-        <div (click)="onLogout()">Logout</div>
-	</nb-layout-header>
-	<nb-layout-column class="colored-column-basic">
-		<router-outlet></router-outlet>
-	</nb-layout-column>
-</nb-layout>
+<div class="core-feature-container">
+    <div class="navigation-bar">
+        <h2 class="header">Personal Treasure</h2>
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home/dashboard">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home/treasure">Treasure</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home/settings">Settings</a>
+          </li>
+          <div class="white-font">
+            <a (click)="onLogout()">Logout</a>
+          </div>
+        </ul>
+      </div>
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+
+</div>
