@@ -2,7 +2,7 @@ import { AuthService } from '../shared/service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
-
+import CryptoJS = require('crypto-js');
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    console.log(CryptoJS.HmacSHA1("Message", "Key"));
     this.authService.login(this.username, this.loginPassword);
   }
 
