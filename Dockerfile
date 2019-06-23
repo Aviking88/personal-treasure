@@ -24,7 +24,8 @@ COPY . /app
 # start app
 CMD ng serve --host 0.0.0.0
 
-
+#To build docker image:
+    # docker build personal-treasure:dev .
 #To run image hit following command,
-# docker run -v ${PWD}:/app -v /app/node_modules -p 4201:4200 --rm example:dev
+# docker run -v ${PWD}:/app -v /app/node_modules -p 4201:4200 --rm personal-treasure:dev
 # Link: https://mherman.org/blog/dockerizing-an-angular-app/
