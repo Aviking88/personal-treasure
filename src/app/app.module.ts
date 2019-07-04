@@ -18,6 +18,8 @@ import { FirebaseService } from './shared/service/firebase.service';
 import { AppRoutes } from './app.routes';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { DataServiceService } from './shared/service/data.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDVjmrsylljEuXs91CPs69LicryYrQWodE',
@@ -42,6 +44,7 @@ const firebaseConfig = {
 
     FormsModule,
     MaterialModulesModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   declarations: [AppComponent, LoginComponent],
   providers: [ {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}, DataServiceService, FirebaseService],
