@@ -22,11 +22,7 @@
   <ng-container matColumnDef="password">
     <th mat-header-cell *matHeaderCellDef> Password </th>
     <td mat-cell *matCellDef="let element">
-     <span *ngIf="element.viewMode">
-        {{element.password}}
-     </span>
-
-      <input *ngIf="!element.viewMode" type="password" placeholder="Password Confirmation" [(ngModel)]="element.password">
+      <input [type]="element.viewMode? 'password':'text'" placeholder="Password Confirmation" [(ngModel)]="element.password">
     </td>
   </ng-container>
 
