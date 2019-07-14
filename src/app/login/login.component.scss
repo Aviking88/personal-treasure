@@ -1,7 +1,19 @@
+.navigation-bar{
+  width: 100%;
+  background: #000;
+  user-select: none;
+  .header{
+    color:#fff;
+    display: inline-flex;
+     padding: 10px;
+  }
+}
+
 .login-container {
   position: absolute;
   box-sizing: border-box;
-  top: 5vh;
+  box-shadow: 0px 0px 5px 1px #ccc;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
   width: 520px;
@@ -33,7 +45,7 @@
       width: 15%;
       min-width: 80px;
       color: #fff;
-      background-color: #673ab7;
+      background-color: #000;
       &-active {
         cursor: default;
         opacity: 0.6;
@@ -60,6 +72,12 @@
       }
     }
   }
+}
+
+.mat-raised-button{
+  background-color:#000;
+  color:#fff;
+  border-radius: 0px;
 }
 
 .full-width {

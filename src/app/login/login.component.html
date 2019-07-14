@@ -1,4 +1,10 @@
+<div class="navigation-bar">
+    <h2 class="header">Personal Treasure</h2>
+  </div>
 <mat-card class="login-container">
+  <h1 *ngIf="isLogin">Hey, good to see you again!</h1>
+  <h1 *ngIf="!isLogin">Welcome, Join our community!</h1>
+  <h6 *ngIf="isLogin">Login to access your treasure.</h6>
   <mat-card-content>
     <div class="registration-container">
       <ul class="tabs">
@@ -15,9 +21,9 @@
               <input matInput placeholder="Password" [(ngModel)]="loginPassword" type="password" name="password" required>
             </mat-form-field>
           </div>
-          <button mat-raised-button class="btn" color="primary" (click)="login()">Connect</button>
+          <button mat-raised-button class="btn" (click)="login()">Connect</button>
 
-          <a style="display: block" href="">Forgotten password?</a>
+          <a style="display: block; margin-top: 10px;" href="" >Forgot password?</a>
         </div>
       </div>
       <div *ngIf="!isLogin" class="register-panel">
