@@ -35,6 +35,12 @@ export class AuthService {
     return from(this.afAuth.auth.createUserWithEmailAndPassword(email, password))
   }
 
+  resetPasswordInit(email: string) {
+    return this.afAuth.auth.sendPasswordResetEmail(
+      email,
+      { url: 'http://localhost:4200/login' });
+    }
+
   async logout() {
     await this.afAuth.auth.signOut();
     localStorage.removeItem('treasure-user');
