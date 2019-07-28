@@ -1,6 +1,15 @@
+<div class="navigation-bar">
+    <h2 class="header">Personal Treasure</h2>
+  </div>
 <mat-card class="login-container">
+  <a *ngIf="isForgotPassword" style="font-size:15px;" [routerLink]="" (click)="isForgotPassword = false;" > Back to login</a>
+  <h1 *ngIf="isLogin && !isForgotPassword">Hey, good to see you again!</h1>
+  <h1 *ngIf="!isLogin && !isForgotPassword">Welcome, Join our community!</h1>
+  <h1 *ngIf="isForgotPassword">Reset your password</h1>
+  <h6 *ngIf="isForgotPassword">Enter your <strong> Personal Treasure </strong> user name to recover your account</h6>
+  <h6 *ngIf="isLogin && !isForgotPassword">Login to access your treasure.</h6>
   <mat-card-content>
-    <div class="registration-container">
+    <div *ngIf = "!isForgotPassword" class="registration-container">
       <ul class="tabs">
         <li class="tab-item" [ngClass]="{'tab-item-active': isLogin}" (click)="isLogin = true;">Login</li>
         <li class="tab-item" [ngClass]="{'tab-item-active': !isLogin}" (click)="isLogin = false;">Register</li>
@@ -15,9 +24,9 @@
               <input matInput placeholder="Password" [(ngModel)]="loginPassword" type="password" name="password" required>
             </mat-form-field>
           </div>
-          <button mat-raised-button class="btn" color="primary" (click)="login()">Connect</button>
+          <button mat-raised-button class="btn" (click)="login()">Connect</button>
 
-          <a style="display: block" href="">Forgotten password?</a>
+          <a style="display: block; margin-top: 10px;" [routerLink]="" (click)="isForgotPassword = true;" >Forgot password?</a>
         </div>
       </div>
       <div *ngIf="!isLogin" class="register-panel">
@@ -47,6 +56,12 @@
         </div>
       </div>
 
+    </div>
+    <div *ngIf = "isForgotPassword" class="registration-container">
+        <mat-form-field style="width:100%">
+            <input matInput placeholder="Username" [(ngModel)]="emailAddress" name="emailAdress" required>
+          </mat-form-field>
+          <button mat-raised-button class="btn" (click)='resetPassword()'>Reset Password</button>
     </div>
     <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
   </mat-card-content>

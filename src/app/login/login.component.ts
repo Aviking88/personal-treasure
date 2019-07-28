@@ -10,8 +10,10 @@ import CryptoJS = require('crypto-js');
 })
 export class LoginComponent implements OnInit {
   username = '';
+  emailAddress = '';
   loginPassword = '';
   isLogin = true;
+  isForgotPassword = false;
   registrationForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
@@ -33,14 +35,25 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(CryptoJS.HmacSHA1("Message", "Key"));
+    console.log(CryptoJS.HmacSHA1('Message', 'Key'));
     this.authService.login(this.username, this.loginPassword);
+  }
+  resetPassword() {
+    if (!this.emailAddress) {
+      alert('Type in your email first');
+    } else {
+      this.authService.resetPasswordInit(this.emailAddress).then(
+      () => alert('A password reset link has been sent to your email address'),
+      (rejectionReason) => alert(rejectionReason))
+    .catch(e => alert('An error occurred while attempting to reset your password'));
+      }
+
   }
 
   register() {
     this.authService.registerUser(this.email, this.password).subscribe((data) => {
       console.log(data);
-    },(err)=>{
+    }, (err) => {
       console.log(err);
     });
   }

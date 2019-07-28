@@ -1,16 +1,19 @@
 <h1 mat-dialog-title>Add/Edit Treasure</h1>
 <div mat-dialog-content>
   <mat-form-field style="width:100%">
-      <input matInput placeholder="Name"  required>
+      <input matInput placeholder="Name" [(ngModel)]="data.name"  required>
+    </mat-form-field>
+  <mat-form-field style="width:100%">
+      <input matInput placeholder="Name" [(ngModel)]="data.link"  required>
+    </mat-form-field>
+  <mat-form-field style="width:100%">
+      <input matInput placeholder="Name" [(ngModel)]="data.userId"  required>
     </mat-form-field>
     <mat-form-field style="width:100%">
-      <input matInput type="password" placeholder="password" required>
-    </mat-form-field>
-    <mat-form-field style="width:100%">
-      <input matInput type="password" placeholder="Password Confirmation"  required>
+      <input matInput type="password" [(ngModel)]="data.password" placeholder="password" required>
     </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Add</button>
+  <button matRipple mat-button (click)="onNoClick()">No Thanks</button>
+  <button matRipple mat-button mat-raised-button color="primary" [mat-dialog-close]="data.animal" cdkFocusInitial (click)="onSubmit()">Add</button>
 </div>
