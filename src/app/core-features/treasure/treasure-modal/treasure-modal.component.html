@@ -4,10 +4,10 @@
       <input matInput placeholder="Name" [(ngModel)]="data.name"  required>
     </mat-form-field>
   <mat-form-field style="width:100%">
-      <input matInput placeholder="Name" [(ngModel)]="data.link"  required>
+      <input matInput placeholder="Link" [(ngModel)]="data.link"  required>
     </mat-form-field>
   <mat-form-field style="width:100%">
-      <input matInput placeholder="Name" [(ngModel)]="data.userId"  required>
+      <input matInput placeholder="UserName" [(ngModel)]="data.userId"  required>
     </mat-form-field>
     <mat-form-field style="width:100%">
       <input matInput type="password" [(ngModel)]="data.password" placeholder="password" required>
@@ -15,5 +15,5 @@
 </div>
 <div mat-dialog-actions>
   <button matRipple mat-button (click)="onNoClick()">No Thanks</button>
-  <button matRipple mat-button mat-raised-button color="primary" [mat-dialog-close]="data.animal" cdkFocusInitial (click)="onSubmit()">Add</button>
+  <button matRipple mat-button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial (click)="onSubmit()">Add</button>
 </div>

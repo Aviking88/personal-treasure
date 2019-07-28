@@ -4,6 +4,7 @@ import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from 'firebase';
 import { from, Observable } from 'rxjs';
+import { FirebaseService } from './firebase.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,10 +12,11 @@ import { from, Observable } from 'rxjs';
 export class AuthService {
   user: User;
   authState = null;
-  constructor(public afAuth: AngularFireAuth, public router: Router) {
+  constructor(public afAuth: AngularFireAuth, public router: Router, private firebaseService: FirebaseService) {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.user = user;
+        this.firebaseService.setUser(user);
         localStorage.setItem('treasure-user', JSON.stringify(this.user));
       } else {
         localStorage.setItem('treasure-user', null);
@@ -22,24 +24,21 @@ export class AuthService {
     });
   }
 
-  async login(email: string, password: string) {
+  login(email: string, password: string) {
     try {
-      await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-      this.router.navigate(['/home']);
+      return this.afAuth.auth.signInWithEmailAndPassword(email, password);
     } catch (e) {
       alert('Error!' + e.message);
     }
   }
 
   registerUser(email: string, password: string): Observable<any> {
-    return from(this.afAuth.auth.createUserWithEmailAndPassword(email, password))
+    return from(this.afAuth.auth.createUserWithEmailAndPassword(email, password));
   }
 
   resetPasswordInit(email: string) {
-    return this.afAuth.auth.sendPasswordResetEmail(
-      email,
-      { url: 'http://localhost:4200/login' });
-    }
+    return this.afAuth.auth.sendPasswordResetEmail(email, { url: 'http://localhost:4200/login' });
+  }
 
   async logout() {
     await this.afAuth.auth.signOut();

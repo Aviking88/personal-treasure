@@ -5,13 +5,15 @@ import { BehaviorSubject } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { TreasureModalComponent } from './treasure-modal/treasure-modal.component';
 import * as CryptoJS from 'crypto-js';
+import { FirebaseService } from 'app/shared/service/firebase.service';
 export interface ITreasureData {
-  iconUrl: string;
+  iconUrl?: string;
   name: string;
   userId: string;
   password: string;
   lastUpdated: string;
   id?: string;
+  uid?: string;
   viewMode: boolean;
 }
 const ELEMENT_DATA: ITreasureData[] = [
@@ -27,7 +29,7 @@ const ELEMENT_DATA: ITreasureData[] = [
   styleUrls: ['./treasure.component.scss'],
 })
 export class TreasureComponent implements OnInit {
-  data: ITreasureData[] = ELEMENT_DATA;
+  data: ITreasureData[] = [];
   displayedColumns: string[] = ['iconUrl', 'name', 'link', 'userId', 'password', 'lastUpdated'];
   dataSource = new MatTableDataSource<ITreasureData>(this.data);
 
@@ -35,9 +37,22 @@ export class TreasureComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private firebaseService: FirebaseService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.firebaseService.getTreasures().subscribe((snapshot) => {
+      console.log( snapshot.docs)
+     ;
+     let d  = [];
+      snapshot.forEach((doc) => {
+        d.push(doc.data());
+        console.log(doc.id, '=>', doc.data());
+      });
+
+      this.data = d;
+      this.dataSource = new MatTableDataSource<ITreasureData>(this.data);
+    });
+  }
 
   addTreasure() {
     const dialogRef = this.dialog.open(TreasureModalComponent, {
@@ -46,6 +61,7 @@ export class TreasureComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
+      this.firebaseService.addTreasure(result);
       console.log('The dialog was closed', result);
     });
   }
